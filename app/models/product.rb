@@ -1,4 +1,8 @@
 class Product < ActiveRecord::Base
+
+	has_many :reviews 
+	has_many :users, through: :reviews
+
 	# Validates presence of description & name fields
 	# Validates price_in_cents is an integer
 	validates :description, :name, presence: true

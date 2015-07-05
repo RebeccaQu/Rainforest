@@ -5,6 +5,10 @@ class ProductsController < ApplicationController
 
   def show
   	@product = Product.find(params[:id])
+
+    if current_user
+      @review = @product.reviews.build
+    end
   end
 
   def new
@@ -34,7 +38,7 @@ class ProductsController < ApplicationController
   def update
   	@product = Product.find(params[:id])
 
-  	if @prodcut.update_attributes(product_params)
+  	if @product.update_attributes(product_params)
   		redirect_to product_path(@product)
   	else
   		render :edit
